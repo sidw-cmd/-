@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Render test</title>
+</head>
+<body>
+<h2>Render + WebSocket OK</h2>
+<p>Открой страницу в двух вкладках — сервер работает.</p>
+<script>
+const ws = new WebSocket((location.protocol === "https:" ? "wss://" : "ws://") + location.host);
+ws.onopen = () => console.log("connected");
+ws.onmessage = e => console.log("msg:", e.data);
+setInterval(()=>ws.send("ping"),2000);
+</script>
+</body>
+</html>
